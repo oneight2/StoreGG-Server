@@ -1,0 +1,8 @@
+<% if(alert.status != ''){ %>
+<div class="alert alert-<%= alert.status %> alert-dismissible mx-3 p-3 mt">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+    &times;
+  </button>
+  <%= alert.message %>
+</div>
+<% } %>
