@@ -1,0 +1,95 @@
+<div class="modal fade" id="modal-default">
+  <div class="modal-dialog">
+    <form action="/nominal/create" method="POST" enctype="multipart/form-data">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Tambah Voucher</h4>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- form start -->
+          <div class="card-body">
+            <div class="form-group">
+              <label for="voucherName">Nama Game</label>
+              <input
+                type="string"
+                class="form-control"
+                id="voucherName"
+                name="voucherName"
+                placeholder="Masukan Nama Game"
+              />
+            </div>
+            <div class="form-group">
+              <label>Kategori</label>
+              <select
+                class="form-control select2"
+                style="width: 100%"
+                name="category"
+              >
+                <option selected="selected">Pilih Kategori</option>
+                <% category.forEach(field=>{%>
+                <option value="<%= field._id %>"><%= field.name %></option>
+                <%})%>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Nominal</label>
+              <div class="select2-purple">
+                <select
+                  class="form-control select2"
+                  style="width: 100%"
+                  name="nominal"
+                  multiple="multiple"
+                  data-placeholder="Pilih Nominal Voucher"
+                >
+                  <% nominal.forEach(field=>{%>
+                  <option value="<%= field._id %>">
+                    <%= field.coinName %><%= field.price %>
+                  </option>
+                  <%})%>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="thumbnail">Upload Thumbnail</label>
+              <input
+                type="file"
+                class="form-control"
+                id="thumbnail"
+                name="thumbnail"
+                placeholder="Masukan Nama Kategori"
+              />
+            </div>
+            <img src="" alt="" id="preview" />
+            <div class="form-group">
+              <label for="price">Price</label>
+              <input
+                type="number"
+                class="form-control"
+                id="price"
+                name="price"
+                placeholder="Masukan Nama Kategori"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary">Tambah</button>
+        </div>
+      </div>
+    </form>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

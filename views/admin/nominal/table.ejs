@@ -2,23 +2,27 @@
   <thead>
     <tr>
       <th>No</th>
-      <th>Kategori</th>
+      <th>Nama Koin</th>
+      <th>Jumlah Koin</th>
+      <th>Harga</th>
       <th>Aksi</th>
     </tr>
   </thead>
   <tbody>
-    <% for(let i=0; i < category.length; i++ ){ %>
+    <% for(let i=0; i < nominal.length; i++ ){ %>
     <tr>
       <td><%= i+1 %></td>
-      <td><%= category[i].name %></td>
+      <td><%= nominal[i].coinName %></td>
+      <td><%= nominal[i].coinQuantity %></td>
+      <td><%= nominal[i].price %></td>
       <td class="text-center">
         <form
-          action="/category/delete/<%= category[i]._id %>?_method=DELETE"
+          action="/nominal/delete/<%= nominal[i]._id %>?_method=DELETE"
           method="post"
         >
           <a
             class="btn btn-primary btn-sm"
-            href="/category/update/<%= category[i]._id %>"
+            href="/nominal/update/<%= nominal[i]._id %>"
           >
             Update
           </a>
@@ -31,7 +35,9 @@
   <tfoot>
     <tr>
       <th>No</th>
-      <th>Kategori</th>
+      <th>Nama Koin</th>
+      <th>Jumlah Koin</th>
+      <th>Harga</th>
       <th>Aksi</th>
     </tr>
   </tfoot>

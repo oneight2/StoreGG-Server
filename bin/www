@@ -33,7 +33,7 @@ db.on("open", function () {
   server.listen(port);
   server.on("error", onError);
   server.on("listening", onListening);
-  console.log("Terhubung ke port:", `http://localhost:`, port);
+  console.log("Terhubung ke port:", `http://localhost:${port}`);
 });
 
 /**
