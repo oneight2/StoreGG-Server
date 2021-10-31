@@ -46,6 +46,8 @@
 <script src="/adminlte/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="/adminlte/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="/adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- Bootstrap Switch -->
+<script src="/adminlte/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 <!-- Select2 -->
 <script src="/adminlte/plugins/select2/js/select2.full.min.js"></script>
 <!-- AdminLTE App -->
@@ -70,6 +72,9 @@
       "autoWidth": false,
       "responsive": true,
     });
+    $("input[data-bootstrap-switch]").each(function(){
+      $(this).bootstrapSwitch('state', $(this).prop('checked'));
+    })
   });
 </script>
 </body>

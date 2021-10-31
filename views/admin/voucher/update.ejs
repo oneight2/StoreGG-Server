@@ -1,110 +1,91 @@
-<%- include ../../partials/header.ejs %> <%- include ../../partials/navbar.ejs
-%> <%- include ../../partials/sidebar.ejs %>
+<%- include ../../partials/header.ejs %>
+  <%- include ../../partials/navbar.ejs %>
+    <%- include ../../partials/sidebar.ejs %>
 
-<div class="content-wrapper">
-  <!-- Content Header (Page header) -->
-  <section class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="col-sm-6">
-          <h1>Kategori</h1>
-        </div>
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item"><a href="/voucher">Voucher</a></li>
-            <li class="breadcrumb-item active">Update</li>
-          </ol>
-        </div>
-      </div>
-      <!-- general form elements -->
-      <div class="card card-primary">
-        <div class="card-header">
-          <h3 class="card-title">Kategori</h3>
-        </div>
-        <!-- /.card-header -->
-        <!-- form start -->
-        <form
-          action="/voucher/actionUpdate/<%= voucher._id %>?_method=PUT"
-          method="post"
-          enctype="multipart/form-data"
-        >
-          <div class="card-body">
-            <div class="form-group">
-              <label for="voucherName">Nama Game</label>
-              <input
-                type="string"
-                class="form-control"
-                id="voucherName"
-                name="voucherName"
-                value="<%= voucher.voucherName %>"
-              />
-            </div>
-            <div class="form-group">
-              <label>Kategori</label>
-              <select
-                class="form-control select2"
-                style="width: 100%"
-                name="category"
-              >
-              <option selected="selected">Pilih Kategori</option>
-                <% category.forEach(field=>{%>
-                    <option value="<%= field._id %>"
-                    <% if(field._id.toString() === voucher.category._id.toString()){ %>
-                        selected
-                    <% } %>
-                    ><%= field.name %></option>
-                <%})%>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Nominal</label>
-              <div class="select2-purple">
-                <select
-                  class="form-control select2"
-                  style="width: 100%"
-                  name="nominals"
-                  multiple="multiple"
-                  data-placeholder="Pilih Nominal Voucher"
-                >
-                  <% nominal.forEach(field=>{ %>
-                    <% voucher.nominals.forEach(fieldVoucher =>{ %>                        
-                        <option value="<%= field._id %>" <% if(field._id.toString() === fieldVoucher._id.toString()){ %>
-                            selected
-                            <%} %> 
-                            <% }) %>
-                            >
-                            <%= field.coinName %>-<%= field.coinQuantity %>
-                        </option>
-                  <%})%>
-                </select>
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1>Kategori</h1>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item"><a href="/">Home</a></li>
+                  <li class="breadcrumb-item"><a href="/voucher">Voucher</a></li>
+                  <li class="breadcrumb-item active">Update</li>
+                </ol>
               </div>
             </div>
-            <div class="form-group">
-              <label for="thumbnail">Upload Thumbnail</label>
-              <input
-                type="file"
-                class="form-control"
-                id="thumbnail"
-                name="thumbnail"
-                placeholder="Masukan Nama Kategori"
-              />
-            </div>
-            <img
-              src="http://localhost:3000/uploads/<%= voucher.thumbnail %>"
-              alt=""
-              id="preview"
-            />
-          </div>
-          <!-- /.card-body -->
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Kategori</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form action="/voucher/actionUpdate/<%= voucher._id %>?_method=PUT" method="post"
+                enctype="multipart/form-data">
+                <div class="card-body">
+                  <input type="checkbox" name="status" <%= voucher.status==='Y' ? 'checked' : '' %>
+                    data-bootstrap-switch data-off-color="danger" data-on-color="success">
 
-          <div class="card-footer">
-            <button type="submit" class="btn btn-primary">Update</button>
+                    <div class="form-group">
+                      <label for="voucherName">Nama Game</label>
+                      <input type="string" class="form-control" id="voucherName" name="voucherName"
+                        value="<%= voucher.voucherName %>" />
+                    </div>
+                    <div class="form-group">
+                      <label>Kategori</label>
+                      <select class="form-control select2" style="width: 100%" name="category">
+                        <option selected="selected">Pilih Kategori</option>
+                        <% category.forEach(field=>{%>
+                          <option value="<%= field._id %>" <%
+                            if(field._id.toString()===voucher.category._id.toString()){ %>
+                            selected
+                            <% } %>
+                              ><%= field.name %>
+                          </option>
+                          <%})%>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Nominal</label>
+                      <div class="select2-purple">
+                        <select class="form-control select2" style="width: 100%" name="nominals" multiple="multiple"
+                          data-placeholder="Pilih Nominal Voucher">
+                          <% nominal.forEach(field=>{ %>
+                            <% voucher.nominals.forEach(fieldVoucher=>{ %>
+                              <option value="<%= field._id %>" <%
+                                if(field._id.toString()===fieldVoucher._id.toString()){ %>
+                                selected
+                                <%} %>
+                                  <% }) %>
+                                    >
+                                    <%= field.coinName %>-<%= field.coinQuantity %>
+                              </option>
+                              <%})%>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="thumbnail">Upload Thumbnail</label>
+                      <input type="file" class="form-control" id="thumbnail" name="thumbnail"
+                        placeholder="Masukan Nama Kategori" />
+                    </div>
+                    <img src="http://localhost:3000/uploads/<%= voucher.thumbnail %>" alt="" id="preview" />
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
           </div>
-        </form>
+        </section>
       </div>
-      <!-- /.card -->
-    </div>
-  </section>
-</div>
-<%- include ../../partials/footer.ejs %> <%- include ../../partials/js.ejs %>
+      <%- include ../../partials/footer.ejs %>
+        <%- include ../../partials/js.ejs %>

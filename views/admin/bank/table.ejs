@@ -1,0 +1,44 @@
+<table id="example2" class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Nama</th>
+      <th>Bank</th>
+      <th>No Rekening</th>
+      <th>Aksi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% var i = 0 %> <% bank.forEach(field=>{ %>
+    <tr>
+      <td><%= i+1 %></td>
+      <td><%= field.name %></td>
+      <td><%= field.nameBank %></td>
+      <td><%= field.noRekening %></td>
+      <td class="text-center">
+        <form
+          action="/bank/delete/<%= field._id %>?_method=DELETE"
+          method="post"
+        >
+          <a
+            class="btn btn-primary btn-sm"
+            href="/bank/update/<%= field._id %>"
+          >
+            Update
+          </a>
+          <button class="btn btn-danger btn-sm">hapus</button>
+        </form>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th>No</th>
+      <th>Nama</th>
+      <th>Bank</th>
+      <th>No Rekening</th>
+      <th>Aksi</th>
+    </tr>
+  </tfoot>
+</table>

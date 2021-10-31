@@ -116,6 +116,9 @@ module.exports = {
       const { id } = req.params;
       const { voucherName, category, nominals } = req.body;
 
+      const voucher = await Voucher.findOne({ _id: id });
+      let status = voucher.status === "Y" ? "N" : "Y";
+
       if (req.file) {
         let tmp_path = req.file.path;
         let originaExt =
@@ -135,8 +138,6 @@ module.exports = {
 
         src.on("end", async () => {
           try {
-            const voucher = await Voucher.findOne({ _id: id });
-
             // periksa image ada ga
             let currentImage = `${config.rootPath}/public/uploads/${voucher.thumbnail}`;
             if (fs.existsSync(currentImage)) {
@@ -145,7 +146,7 @@ module.exports = {
 
             await Voucher.findOneAndUpdate(
               { _id: id },
-              { voucherName, category, nominals, thumbnail: filename }
+              { voucherName, category, nominals, thumbnail: filename, status }
             );
 
             req.flash("alertMessage", "Berhasil Update Voucher!");
@@ -161,7 +162,7 @@ module.exports = {
       } else {
         await Voucher.findOneAndUpdate(
           { _id: id },
-          { voucherName, category, nominals }
+          { voucherName, category, nominals, status }
         );
         req.flash("alertMessage", "Berhasil Update Voucher!");
         req.flash("alertStatus", "success");

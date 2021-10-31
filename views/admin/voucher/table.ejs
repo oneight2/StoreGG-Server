@@ -10,9 +10,9 @@
     </tr>
   </thead>
   <tbody>
-    <% voucher.forEach(field=>{ %>
+    <% var i = 0 %> <% voucher.forEach(field=>{ %>
     <tr>
-      <td>1</td>
+      <td><%= i+1 %></td>
       <td><%= field.voucherName %></td>
       <td><%= field?.category?.name ?? '-' %></td>
       <td>
