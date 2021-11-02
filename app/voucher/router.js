@@ -9,7 +9,8 @@ const {
   actionUpdate,
   actionDelete,
 } = require("./controller");
-
+const { isLogin } = require("../middleware/auth");
+router.use(isLogin);
 /* GET home page. */
 router.get("/", index);
 router.post(

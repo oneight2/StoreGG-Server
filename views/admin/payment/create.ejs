@@ -1,0 +1,62 @@
+<div class="modal fade" id="modal-default">
+  <div class="modal-dialog">
+    <form action="/payment/create" method="POST">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Payments</h4>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- form start -->
+          <div class="card-body">
+            <div class="form-group">
+              <label for="type">Metode Pembayaran</label>
+              <input
+                type="string"
+                class="form-control"
+                id="type"
+                name="type"
+                placeholder="Metode Pembayaran"
+              />
+            </div>
+            <div class="form-group">
+              <label>Bank</label>
+              <div class="select2-purple">
+                <select
+                  class="form-control select2"
+                  style="width: 100%"
+                  name="banks"
+                  multiple="multiple"
+                  data-placeholder="Pilih Akun Tujuan Bank"
+                >
+                  <% bank.forEach(field=>{%>
+                  <option value="<%= field._id %>">
+                    <%= field.name %>-<%= field.nameBank %>-<%= field.noRekening
+                    %>
+                  </option>
+                  <%})%>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary">Tambah</button>
+        </div>
+      </div>
+    </form>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

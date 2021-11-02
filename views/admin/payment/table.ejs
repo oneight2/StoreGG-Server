@@ -1,0 +1,56 @@
+<table id="example2" class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Payments</th>
+      <th>Status</th>
+      <th>Banks</th>
+      <th>Aksi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% var i = 1 %> <% payment.forEach(field=>{ %>
+    <tr>
+      <td><%= i++ %></td>
+      <td><%= field.type %></td>
+      <td>
+        <% if(field.status ==='Y'){ %>
+        <span class="badge badge-sm badge-success">Aktif</span>
+        <% }else{%>
+        <span class="badge badge-sm badge-danger">Non Aktif</span>
+        <% } %>
+      </td>
+      <td>
+        <% field.banks.forEach(field =>{ %>
+        <span class="badge badge-sm badge-info"
+          ><%= `${field.name} - ${field.nameBank}` %></span
+        >
+        <% }) %>
+      </td>
+      <td class="text-center">
+        <form
+          action="/payment/delete/<%= field._id %>?_method=DELETE"
+          method="post"
+        >
+          <a
+            class="btn btn-primary btn-sm"
+            href="/payment/update/<%= field._id %>"
+          >
+            Update
+          </a>
+          <button class="btn btn-danger btn-sm">hapus</button>
+        </form>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th>No</th>
+      <th>Payments</th>
+      <th>Status</th>
+      <th>Banks</th>
+      <th>Aksi</th>
+    </tr>
+  </tfoot>
+</table>

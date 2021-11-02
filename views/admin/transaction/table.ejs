@@ -1,0 +1,74 @@
+<table id="example2" class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Nama Game</th>
+      <th>Item</th>
+      <th>Total Harga</th>
+      <th>Status</th>
+      <th>Nama Player</th>
+      <th>Aksi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% var i = 1 %> <% transaction.forEach(field=>{ %>
+    <tr>
+      <td><%= i++ %></td>
+      <td>
+        <ul class="list-inline">
+          <li class="list-inline-item">
+            <img
+              src="http://localhost:3000/uploads/<%= field.historyVoucherTopup.thumbnail %> "
+              width="48px"
+              alt=""
+            />
+          </li>
+        </ul>
+        <%= field.historyVoucherTopup.gameName %>
+        <br />
+        <%= field.historyVoucherTopup.category %>
+      </td>
+      <td>
+        <%= field.historyVoucherTopup.coinQuantity %> <%=
+        field.historyVoucherTopup.coinName %>
+      </td>
+      <td><%= field.historyVoucherTopup.price %></td>
+      <td>
+        <% if(field.status ==='pending'){ %>
+        <span class="badge badge-sm badge-warning">Pending</span>
+        <% }else if(field.status ==='success'){%>
+        <span class="badge badge-sm badge-success">Success</span>
+        <% }else { %>
+        <span class="badge badge-sm badge-danger">Failed</span>
+        <% } %>
+      </td>
+      <td><%= field?.player?.name?? '-' %></td>
+      <td class="text-center">
+        <form
+          action="/transaction/status/<%= field._id %>?status=failed&_method=PUT "
+          method="post"
+        >
+          <button class="btn btn-danger btn-sm">Tolak</button>
+        </form>
+        <form
+          action="/transaction/status/<%= field._id %>?status=success&_method=PUT "
+          method="post"
+        >
+          <button class="btn btn-info btn-sm">Terima</button>
+        </form>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th>No</th>
+      <th>Nama Game</th>
+      <th>Item</th>
+      <th>Total Harga</th>
+      <th>Status</th>
+      <th>Nama Player</th>
+      <th>Aksi</th>
+    </tr>
+  </tfoot>
+</table>
