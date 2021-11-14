@@ -44,6 +44,7 @@
       </td>
       <td><%= field?.player?.name?? '-' %></td>
       <td class="text-center">
+        <% if(field.status === 'pending'){ %>
         <form
           action="/transaction/status/<%= field._id %>?status=failed&_method=PUT "
           method="post"
@@ -56,6 +57,7 @@
         >
           <button class="btn btn-info btn-sm">Terima</button>
         </form>
+        <% } %>
       </td>
     </tr>
     <% }) %>

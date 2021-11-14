@@ -13,7 +13,7 @@
     <% var i = 0 %> <% voucher.forEach(field=>{ %>
     <tr>
       <td><%= i+1 %></td>
-      <td><%= field.voucherName %></td>
+      <td><%= field.name %></td>
       <td><%= field?.category?.name ?? '-' %></td>
       <td>
         <% field.nominals.forEach(field =>{ %>

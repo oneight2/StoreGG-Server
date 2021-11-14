@@ -5,7 +5,6 @@ const Nominal = require("../nominal/model");
 const path = require("path");
 const fs = require("fs");
 const config = require("../../config");
-const { findOne } = require("./model");
 
 module.exports = {
   index: async (req, res) => {
@@ -36,7 +35,7 @@ module.exports = {
 
   actionCreate: async (req, res) => {
     try {
-      const { voucherName, category, nominals } = req.body;
+      const { name, category, nominals } = req.body;
 
       if (req.file) {
         let tmp_path = req.file.path;
@@ -58,7 +57,7 @@ module.exports = {
         src.on("end", async () => {
           try {
             const voucher = new Voucher({
-              voucherName,
+              name,
               category,
               nominals,
               thumbnail: filename,
@@ -73,12 +72,12 @@ module.exports = {
           } catch (error) {
             req.flash("alertMessage", `${err.message}`);
             req.flash("alertStatus", "danger");
-            res.redirect("/voucvher");
+            res.redirect("/voucher");
           }
         });
       } else {
         const voucher = new Voucher({
-          voucherName,
+          name,
           category,
           nominals,
         });
@@ -114,7 +113,7 @@ module.exports = {
   actionUpdate: async (req, res) => {
     try {
       const { id } = req.params;
-      const { voucherName, category, nominals } = req.body;
+      const { name, category, nominals } = req.body;
 
       const voucher = await Voucher.findOne({ _id: id });
       let status = voucher.status === "Y" ? "N" : "Y";
@@ -146,7 +145,7 @@ module.exports = {
 
             await Voucher.findOneAndUpdate(
               { _id: id },
-              { voucherName, category, nominals, thumbnail: filename, status }
+              { name, category, nominals, thumbnail: filename, status }
             );
 
             req.flash("alertMessage", "Berhasil Update Voucher!");
@@ -162,7 +161,7 @@ module.exports = {
       } else {
         await Voucher.findOneAndUpdate(
           { _id: id },
-          { voucherName, category, nominals, status }
+          { name, category, nominals, status }
         );
         req.flash("alertMessage", "Berhasil Update Voucher!");
         req.flash("alertStatus", "success");

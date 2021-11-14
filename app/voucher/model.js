@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 let voucherSchema = mongoose.Schema(
   {
-    voucherName: {
+    name: {
       type: String,
       required: [true, "Nama Voucher harus diisi"],
     },

@@ -18,7 +18,7 @@ let userSchema = mongoose.Schema(
     },
     role: {
       type: String,
-      Enum: ["Admin", "User"],
+      Enum: ["admin", "user"],
       required: [true, "Role harus diisi"],
     },
     phoneNumber: {
