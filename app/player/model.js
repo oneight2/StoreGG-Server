@@ -28,7 +28,7 @@ let playerSchema = mongoose.Schema(
       default: "user",
     },
     phoneNumber: {
-      type: Number,
+      type: String,
       required: [true, "Nomor Telepon harus diisi"],
     },
     status: {
